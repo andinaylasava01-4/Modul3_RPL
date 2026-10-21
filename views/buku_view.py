@@ -1,4 +1,4 @@
-#AndiNayla_F5212510005=
+
 import customtkinter as ctk
 from tkinter import ttk
 
@@ -6,14 +6,16 @@ class BukuView(ctk.CTk):
     def __init__(self):
         super().__init__()
         self.title("Sistem Manajemen Perpustakaan")
-        self.geometry("800x480")
+        self.geometry("850x500")
 
         # Konfigurasi Grid Utama (1 Baris, 2 Kolom)
         self.grid_columnconfigure(0, weight=1)  # Kolom Kiri (Form)
-        self.grid_columnconfigure(1, weight=2)  # Kolom Kanan (Tabel)
+        self.grid_columnconfigure(1, weight=2)  # Kolom Kanan (Tabel lebih lebar)
         self.grid_rowconfigure(0, weight=1)
 
+        # ==========================================
         # FRAME KIRI: FORMULIR INPUT BUKU
+        # ==========================================
         self.frame_kiri = ctk.CTkFrame(self)
         self.frame_kiri.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
 
@@ -29,23 +31,27 @@ class BukuView(ctk.CTk):
         self.entry_tahun = ctk.CTkEntry(self.frame_kiri, placeholder_text="Tahun Terbit (Misal: 2024)")
         self.entry_tahun.pack(pady=8, padx=15, fill="x")
 
-        # Tombol Aksi (Simpan, Update, Delete)
-        self.btn_simpan = ctk.CTkButton(self.frame_kiri, text="Simpan Data", fg_color="green")
+        # Tombol Aksi
+        self.btn_simpan = ctk.CTkButton(self.frame_kiri, text="Simpan Data", fg_color="green", hover_color="darkgreen")
         self.btn_simpan.pack(pady=(15, 5), padx=15, fill="x")
 
-        self.btn_update = ctk.CTkButton(self.frame_kiri, text="Perbarui Data (Update)", fg_color="blue")
+        # MODIFIKASI: Penambahan Tombol Perbarui Data (Update) - Warna Biru
+        self.btn_update = ctk.CTkButton(self.frame_kiri, text="Perbarui Data (Update)", fg_color="blue", hover_color="darkblue")
         self.btn_update.pack(pady=5, padx=15, fill="x")
 
-        self.btn_delete = ctk.CTkButton(self.frame_kiri, text="Hapus Data (Delete)", fg_color="red")
-        self.btn_delete.pack(pady=5, padx=15, fill="x")
+        # MODIFIKASI: Penambahan Tombol Hapus Data (Delete) - Warna Merah
+        self.btn_hapus = ctk.CTkButton(self.frame_kiri, text="Hapus Data (Delete)", fg_color="red", hover_color="darkred")
+        self.btn_hapus.pack(pady=5, padx=15, fill="x")
 
+        # ==========================================
         # FRAME KANAN: TABEL DAFTAR BUKU
+        # ==========================================
         self.frame_kanan = ctk.CTkFrame(self)
         self.frame_kanan.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
 
         ctk.CTkLabel(self.frame_kanan, text="Daftar Koleksi Buku", font=("Arial", 16, "bold")).pack(pady=15)
 
-        # Komponen Tabel (Treeview)
+        # Komponen Tabel (Treeview dari tkinter standar)
         kolom = ("id", "judul", "penulis", "tahun")
         self.tabel = ttk.Treeview(self.frame_kanan, columns=kolom, show="headings", height=15)
 
@@ -63,6 +69,7 @@ class BukuView(ctk.CTk):
 
         self.tabel.pack(fill="both", expand=True, padx=15, pady=10)
 
+# Blok eksekusi untuk menguji tampilan grafis
 if __name__ == "__main__":
     app = BukuView()
     app.mainloop()
