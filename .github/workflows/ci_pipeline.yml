@@ -1,3 +1,4 @@
+
 name: Python CI Pipeline - Sistem Perpustakaan
 
 on:
@@ -26,4 +27,4 @@ jobs:
 
     - name: 4. Menjalankan Automated Unit Testing (Pytest)
       run: |
-        pytest -v
+        python -m pytest -v
